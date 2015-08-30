@@ -13,12 +13,20 @@ module PgTranslatable
 
         @column_name = @column.to_s.singularize
         @column_name_plural = @column.to_s.pluralize
+
+        ensure_different_plural
+
         @type = @object.columns_hash[@column.to_s].type
 
         raise_wrong_column_type
       end
 
       private
+
+      def ensure_different_plural
+        return unless @column_name_plural == @column_name
+        @column_name_plural = "#{@column_name_plural}_translations"
+      end
 
       def raise_wrong_column_type
         accepted_types = [:hstore, :json, :jsonb]

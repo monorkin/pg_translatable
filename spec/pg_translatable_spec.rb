@@ -1,11 +1,99 @@
 require 'rails_helper'
 
-describe PgTranslatable do
+RSpec.describe PgTranslatable, type: :model do
   it 'has a version number' do
     expect(PgTranslatable::Version::STRING).not_to be nil
   end
 
   it 'includes it self in ActiveRecord::Base' do
     expect(ActiveRecord::Base.singleton_methods).to include(:translate)
+  end
+
+  context 'when attached to model' do
+    let!(:post) { build(:post) }
+
+    describe '#translate' do
+      it 'attaches class methods to model' do
+        expect(Post.singleton_methods).to(
+          include(
+            :title_fields, :content_fields, :price_fields
+          )
+        )
+      end
+
+      it 'attaches instance methods to model' do
+        expect(post.methods).to(
+          include(
+            :title_en, :title_de, :title_fr, :title_es,
+            :title_en=, :title_de=, :title_fr=, :title_es=,
+            :title_formatter,
+
+            :content_en, :content_de, :content_fr, :content_es,
+            :content_en=, :content_de=, :content_fr=, :content_es=,
+            :content_formatter,
+
+            :price_en, :price_de, :price_fr, :price_es,
+            :price_en=, :price_de=, :price_fr=, :price_es=,
+            :price_formatter,
+
+            :title, :titles, :titles=,
+            :content, :contents, :contents=,
+            :price, :prices, :prices=
+          )
+        )
+      end
+    end
+
+    describe '#title_en' do
+      it 'returns the english translation' do
+        expect(post.title_en).to eq('title_en')
+      end
+    end
+
+    describe '#title_de' do
+      it 'returns the german translation' do
+        expect(post.title_de).to eq('title_de')
+      end
+    end
+
+    describe '#title_fr' do
+      it 'returns the french translation' do
+        expect(post.title_fr).to eq('title_fr')
+      end
+    end
+
+    describe '#title_es' do
+      it 'returns the spanish translation' do
+        expect(post.title_es).to eq('title_es')
+      end
+    end
+
+    describe '#title_en=' do
+      it 'sets the english translation' do
+        post.title_en = 'test'
+        expect(post.title_en).to eq('test')
+      end
+    end
+
+    describe '#title_de=' do
+      it 'sets the german translation' do
+        post.title_de = 'test'
+        expect(post.title_de).to eq('test')
+      end
+    end
+
+    describe '#title_fr=' do
+      it 'sets the french translation' do
+        post.title_fr = 'test'
+        expect(post.title_fr).to eq('test')
+      end
+    end
+
+    describe '#title_es=' do
+      it 'sets the spanish translation' do
+        post.title_es = 'test'
+        expect(post.title_es).to eq('test')
+      end
+    end
   end
 end

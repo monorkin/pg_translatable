@@ -12,4 +12,10 @@
 
 class Post < ActiveRecord::Base
   translate :title, :content, :price
+
+  private
+
+  def content_formatter(value)
+    value.to_s.reverse
+  end
 end
