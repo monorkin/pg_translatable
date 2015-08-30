@@ -22,7 +22,7 @@ RSpec.describe PgTranslatable, type: :model do
       end
 
       # For some reason this rases a false negative if any formatter gets
-      # overrideens
+      # overridden
       #
       # it 'attaches instance methods to model' do
       #   expect(post.methods).to(
@@ -96,6 +96,24 @@ RSpec.describe PgTranslatable, type: :model do
       it 'sets the spanish translation' do
         post.title_es = 'test'
         expect(post.title_es).to eq('test')
+      end
+    end
+
+    describe '#content_en' do
+      it 'uses the formatter' do
+        expect(post.content_en).to eq('ne_tnetnoc')
+      end
+    end
+
+    describe '#title_fields' do
+      it 'returns an array' do
+        expect(Post.title_fields).to be_a(Array)
+      end
+
+      it 'returns a list of strong parameters fields' do
+        expect(Post.title_fields).to include(
+          :title_en, :title_de, :title_fr, :title_es
+        )
       end
     end
   end
