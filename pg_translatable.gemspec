@@ -12,8 +12,7 @@ Gem::Specification.new do |spec|
   spec.summary = 'Store translations in PG\'s non-sql store types'
 
   spec.description = 'Store translations in your PG database as HSTORE, JSON '\
-                     'or JSONB. This gem handles storage, sanitization, '\
-                     'validation and provides scopes to filter your data.'
+                     'or JSONB.'
 
   spec.homepage = 'https://github.com/Stankec/pg_translatable'
 

@@ -1,8 +1,19 @@
+[![Gem Version](https://badge.fury.io/rb/pg_translatable.svg)](http://badge.fury.io/rb/pg_translatable)
 [![Build Status](https://travis-ci.org/Stankec/pg_translatable.svg?branch=master)](https://travis-ci.org/Stankec/pg_translatable)
 [![Code Climate](https://codeclimate.com/github/Stankec/pg_translatable/badges/gpa.svg)](https://codeclimate.com/github/Stankec/pg_translatable)
 [![Test Coverage](https://codeclimate.com/github/Stankec/pg_translatable/badges/coverage.svg)](https://codeclimate.com/github/Stankec/pg_translatable/coverage)
 
 # About
+
+Store translations in your PG database as HSTORE, JSON or JSONB.
+
+# Instalation
+
+To use this gem in your rails app simply add the following to your `Gemfile`:
+
+```Ruby
+gem 'pg_translatable'
+```
 
 # Development
 
