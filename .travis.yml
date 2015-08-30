@@ -6,7 +6,10 @@ gemfile:
 install:
   - 'travis_retry bundle install'
 addons:
+  postgresql: '9.4'
   code_climate:
     repo_token: 'f63c4f1a42eacd5c44d1393fea83ff8d669d1ef15e192584a8aada456883698b'
 script:
   - 'bundle exec rake spec'
+before_script:
+  - psql -c 'create database pg_translatable_test;' -U postgres
