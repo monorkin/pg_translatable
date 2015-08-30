@@ -172,3 +172,14 @@ ORDER BY c.conname
   [1m[35m (0.2ms)[0m  SELECT version FROM "schema_migrations"
   [1m[36m (0.4ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150830113410')[0m
   [1m[35mActiveRecord::SchemaMigration Load (0.4ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36m (117.4ms)[0m  [1mDROP DATABASE IF EXISTS "pg_translatable_test"[0m
+  [1m[35m (398.6ms)[0m  CREATE DATABASE "pg_translatable_test" ENCODING = 'unicode'
+  [1m[36mSQL (0.2ms)[0m  [1mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35mSQL (20.6ms)[0m  CREATE EXTENSION IF NOT EXISTS "hstore"
+  [1m[36m (4.2ms)[0m  [1mCREATE TABLE "posts" ("id" serial primary key, "title" hstore, "content" json, "price" jsonb, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (1.8ms)[0m  CREATE TABLE "schema_migrations" ("version" character varying NOT NULL) 
+  [1m[36m (1.1ms)[0m  [1mCREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")[0m
+  [1m[35m (0.3ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (0.4ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150830113410')[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
