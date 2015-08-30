@@ -5,14 +5,10 @@ rescue LoadError
   puts 'You must `gem install bundler` and `bundle install` to run rake tasks'
 end
 
-require 'rdoc/task'
-
-RDoc::Task.new(:rdoc) do |rdoc|
-  rdoc.rdoc_dir = 'rdoc'
-  rdoc.title    = 'RocketDocs'
-  rdoc.options << '--line-numbers'
-  rdoc.rdoc_files.include('README.rdoc')
-  rdoc.rdoc_files.include('lib/**/*.rb')
+begin
+  require 'rspec'
+rescue LoadError
+  puts 'You must `gem install rspec` to run tests'
 end
 
 APP_RAKEFILE = File.expand_path('../spec/test_app/Rakefile', __FILE__)
@@ -21,4 +17,3 @@ load 'rails/tasks/engine.rake'
 Bundler::GemHelper.install_tasks
 
 RSpec::Core::RakeTask.new(:spec)
-task default: :appraisal if !ENV['APPRAISAL_INITIALIZED'] && !ENV['TRAVIS']
