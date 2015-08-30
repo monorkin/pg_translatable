@@ -1,0 +1,16 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+
+development:
+  <<: *default
+  database: pg_translatable_dev
+
+test:
+  <<: *default
+  database: pg_translatable_test
+
+production:
+  <<: *default
+  database: pg_translatable
