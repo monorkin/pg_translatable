@@ -140,6 +140,9 @@ rake db:migrate
 
 # Contributing
 
+Open an issue [here](https://github.com/Stankec/pg_translatable/issues) or do
+the following:
+
 1. [Fork it]( https://github.com/Stankec/pg_translatable/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
