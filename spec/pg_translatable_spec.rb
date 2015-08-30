@@ -76,6 +76,14 @@ RSpec.describe PgTranslatable, type: :model do
         post.title_en = 'test'
         expect(post.title_en).to eq('test')
       end
+
+      it 'saves translations' do
+        post.title_en = 'test'
+        post.save
+        post.reload
+
+        expect(post.title_en).to eq('test')
+      end
     end
 
     describe '#title_de=' do
