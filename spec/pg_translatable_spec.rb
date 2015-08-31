@@ -124,5 +124,21 @@ RSpec.describe PgTranslatable, type: :model do
         )
       end
     end
+
+    describe '#title' do
+      context 'when the default language is english' do
+        it 'returns the english translation' do
+          I18n.locale = :en
+          expect(post.title).to eq('title_en')
+        end
+      end
+
+      context 'when the default language is german' do
+        it 'returns the german translation' do
+          I18n.locale = :de
+          expect(post.title).to eq('title_de')
+        end
+      end
+    end
   end
 end

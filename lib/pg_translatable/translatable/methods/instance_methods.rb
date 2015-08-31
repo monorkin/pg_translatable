@@ -22,7 +22,7 @@ module PgTranslatable
         def define_getter
           @object.class_eval <<-RUBY
             define_method("#{@column_name}") do
-              send("#{@column_name}_#{I18n.locale}")
+              send("#{@column_name}_\#{I18n.locale}")
             end
           RUBY
         end
