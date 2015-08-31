@@ -69,7 +69,10 @@ module PgTranslatable
           @languages.each do |locale|
             @object.class_eval <<-RUBY
               define_method("#{@column_name}_#{locale}=") do |value|
-                send("#{@column_name_plural}")["#{locale}"] = value
+                translations = send("#{@column_name_plural}")
+                translations["#{locale}"] = value
+                self[:#{@column}] = translations
+                value
               end
             RUBY
           end
