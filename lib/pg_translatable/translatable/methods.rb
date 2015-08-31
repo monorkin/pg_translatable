@@ -21,7 +21,7 @@ module PgTranslatable
       private
 
       def load_column_type
-        @type = @object.columns_hash[@column].type
+        @type = @object.columns_hash[@column.to_s].type
         raise_wrong_column_type
       rescue ActiveRecord::StatementInvalid
         @type = :unknown
