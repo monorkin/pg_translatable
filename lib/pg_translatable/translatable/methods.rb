@@ -15,13 +15,17 @@ module PgTranslatable
         @column_name_plural = @column.to_s.pluralize
 
         ensure_different_plural
-
-        @type = @object.columns_hash[@column.to_s].type
-
-        raise_wrong_column_type
+        load_column_type
       end
 
       private
+
+      def load_column_type
+        @type = @object.columns_hash[@column].type
+        raise_wrong_column_type
+      rescue ActiveRecord::StatementInvalid
+        @type = :unknown
+      end
 
       def ensure_different_plural
         return unless @column_name_plural == @column_name
