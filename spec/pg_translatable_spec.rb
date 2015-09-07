@@ -23,28 +23,28 @@ RSpec.describe PgTranslatable, type: :model do
 
       # For some reason this rases a false negative if any formatter gets
       # overridden
-      #
-      # it 'attaches instance methods to model' do
-      #   expect(post.methods).to(
-      #     include(
-      #       :title_en, :title_de, :title_fr, :title_es,
-      #       :title_en=, :title_de=, :title_fr=, :title_es=,
-      #       :title_formatter,
-      #
-      #       :content_en, :content_de, :content_fr, :content_es,
-      #       :content_en=, :content_de=, :content_fr=, :content_es=,
-      #       :content_formatter,
-      #
-      #       :price_en, :price_de, :price_fr, :price_es,
-      #       :price_en=, :price_de=, :price_fr=, :price_es=,
-      #       :price_formatter,
-      #
-      #       :title, :titles, :titles=,
-      #       :content, :contents, :contents=,
-      #       :price, :prices, :prices=
-      #     )
-      #   )
-      # end
+
+      it 'attaches instance methods to model' do
+        expect(post.methods).to(
+          include(
+            :title_en, :title_de, :title_fr, :title_es,
+            :title_en=, :title_de=, :title_fr=, :title_es=,
+            :title_formatter,
+
+            :content_en, :content_de, :content_fr, :content_es,
+            :content_en=, :content_de=, :content_fr=, :content_es=,
+            :content_formatter,
+
+            :price_en, :price_de, :price_fr, :price_es,
+            :price_en=, :price_de=, :price_fr=, :price_es=,
+            :price_formatter,
+
+            :title, :titles, :titles=,
+            :content, :contents, :contents=,
+            :price, :prices, :prices=
+          )
+        )
+      end
     end
 
     describe '#title_en' do

@@ -9,7 +9,10 @@ module PgTranslatable
         private
 
         def define_strong_params_fields
-          languages_list = @languages.map { |locale| ":#{@column}_#{locale}" }
+          languages_list = @languages.map do |locale|
+            ":#{@column_name}_#{locale}"
+          end
+
           @object.class_eval <<-RUBY
             define_singleton_method("#{@column_name}_fields") do
               [#{languages_list.join(', ')}]
