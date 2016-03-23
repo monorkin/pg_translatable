@@ -127,6 +127,33 @@ end
 There is no practical solution for validating this kind of data.
 My suggestion is to write custom validator classes.
 
+Here is an example validator.
+
+```Ruby
+# app/validators/translation_present_validator.rb
+class TranslationsPresentValidator < ActiveModel::EachValidator
+  def validate_each(record, attribute, _value)
+    languages =
+      record.try(:validate_translations_for_languages) ||
+      I18n.available_locales
+
+    languages.each do |locale|
+      next if record.send("#{attribute}_#{locale}").present?
+      record.errors.add(
+        "#{attribute}_#{locale}".to_sym, :translation_missing
+      )
+    end
+  end
+end
+
+# app/models/post.rb
+class Post < ActiveRecord::Base
+  translate :title
+
+  validates :title, translation_present: true
+end
+```
+
 # Development
 
 After checking out the repo, make sure you have a Postgres database server
